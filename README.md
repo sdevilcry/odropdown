@@ -46,5 +46,6 @@ $('.odropdown').odropdown();
 This plugin handle form for you, just add the given code into `<form>` tag.
 
 Some elements need to be added as :
-The "data-target" attribute is used to target and set the selected value into an input (this one can be created by yourself, but the plugin check it for you).
-the "data-id" attribute is the value stored into the input when a user select of the element of the list.
+
+The `data-target` attribute is used to target and set the selected value into an input (this one can be created by yourself, but the plugin check it for you).
+the `data-id` attribute is the value stored into the input when a user select of the element of the list.
