@@ -1,7 +1,4 @@
-odropdown
-=========
-
-jQuery - oDropDown Menu
+# oDropDown Menu
 
 This plugins will help to build fast dropdown menu to be used with any form you want.
 
@@ -13,17 +10,19 @@ So, in first, thanks to HUGO GIRAUDEL for his tutorial and his beautiful css sty
 This plugin could be improved a lot (code and features).
 
 
-How to :
-========
+##How to
 
 1 / Include jquery plugins, css, and this plugin in the header.
 
 2 / Initialize your content with this simple line.
 
+```
 $('.odropdown').odropdown();
+```
 
 3 / Add the minimal html container code :
 
+```
 <div class="odropdown wrapper-odropdown-3">
 	<span>Title</span>
 	<ul class="dropdown" data-target='targeted_input_id'>
@@ -38,13 +37,13 @@ $('.odropdown').odropdown();
 		</li>
 	</ul>
 </div>
+```
 
 4 / Enjoy :)
 
-More information :
-==================
+## More information
 
-This plugin handle form for you, just add the given code into <form></form> tag.
+This plugin handle form for you, just add the given code into `<form>` tag.
 
 Some elements need to be added as :
 The "data-target" attribute is used to target and set the selected value into an input (this one can be created by yourself, but the plugin check it for you).
