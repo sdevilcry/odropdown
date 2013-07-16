@@ -14,7 +14,9 @@
 		var default_settings = {
 			placeholder : 'span',
 			placeholder_text : '',
-			selected_index : -1
+			selected_index : -1,
+			use_text_metrics: false,
+			extra_width_metrics :0
 		};
 
 		var settings = $.extend( {}, default_settings, options );
@@ -31,6 +33,10 @@
 				$placeholder.text(settings.placeholder_text);
 			}
 
+			// Prepare Form / input selection
+			var $input = $('input[name="' + $list.attr('data-target') + '"]');
+			var $form = $this.parents('form');
+
 			if (settings.selected_index >= 0 && $this.find('li').length >= settings.selected_index) {
 				var $li = $this.find('li:eq(' + settings.selected_index + ')');
 				selectElementOfList($li);
@@ -38,16 +44,18 @@
 				$this.attr('tabindex', -1);
 			}
 
-			// Prepare Form / input selection
-			var $input = $('input[name="' + $list.attr('data-target') + '"]');
-			var $form = $this.parents('form');
-
 			// Check if the form exist
 			if ($form.length) {
 				if (!$input.length) {
 					$input = $('<input type="hidden" name="' + $list.attr('data-target') + '" value="" />');
 					$input.appendTo($form);
 				}
+			}
+
+			if (settings.use_text_metrics) {
+				var width = getWidth() + settings.extra_width_metrics;
+
+				$this.css('width', width + 'px');
 			}
 
 			$this.on('click', function(event){
@@ -86,6 +94,25 @@
 					$input.trigger('change');
 					$input.trigger('click');
 				}
+			}
+
+			function getWidth()
+			{
+				var width = 0;
+				$this.find('li').each(function() {
+					var html_old = $(this).html();
+					var html_text = $(this).text();
+					var html_calc = '<span>' + html_text + '</span>';
+
+					$(this).html(html_calc);
+					var temporary_width = $(this).find('span:first').width();
+					$(this).html(html_old);
+
+					if (temporary_width > width) {
+						width = temporary_width;
+					}
+				});
+				return width;
 			}
 		});
 	};
